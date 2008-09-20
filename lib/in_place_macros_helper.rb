@@ -54,6 +54,8 @@ module InPlaceMacrosHelper
     js_options['cols'] = options[:cols] if options[:cols]
     js_options['size'] = options[:size] if options[:size]
     js_options['externalControl'] = "'#{options[:external_control]}'" if options[:external_control]
+    js_options['externalControlOnly'] = "'#{options[:external_control_only]}'" if options[:external_control_only]
+    js_options['submitOnBlur'] = "'#{options[:submit_on_blur]}'" if options[:submit_on_blur]
     js_options['loadTextURL'] = "'#{url_for(options[:load_text_url])}'" if options[:load_text_url]        
     js_options['ajaxOptions'] = options[:options] if options[:options]
     js_options['htmlResponse'] = !options[:script] if options[:script]
