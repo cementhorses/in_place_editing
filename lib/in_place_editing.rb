@@ -34,8 +34,10 @@ module InPlaceEditing
         @item.reload
         text = if options[:object_attribute_formatter]
           @item.send(options[:object_attribute_formatter])
-        else
+        elseif options[:attribute_formatter]
           @item.send(attribute).send(options[:attribute_formatter])
+        else
+          @item.send(attribute)
         end
         text = @template.send(options[:helper_formatter], text) if options[:helper_formatter]
         render :text => text
