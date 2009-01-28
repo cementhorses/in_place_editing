@@ -76,11 +76,11 @@ module InPlaceMacrosHelper
     tag = ::ActionView::Helpers::InstanceTag.new(object, method, self)
     tag_options = {:tag => "span", :id => "#{object}_#{method}_#{tag.object.id}_in_place_editor", :class => "in_place_editor_field"}.merge!(tag_options)
     in_place_editor_options[:url] = in_place_editor_options[:url] || url_for({ :action => "set_#{object}_#{method}", :id => tag.object.id })
-    if formatter = in_place_editor_options.delete(:formatter)
+    if helper_formatter = in_place_editor_options.delete(:helper_formatter)
       # in_place_editor_options[:load_text_url] ||= { :controller => object.pluralize, :action => 'show', :id => tag.object.id, :attribute => method.to_s } 
       item = @template.instance_variable_get("@#{object}")
       value = item.send(method)
-      content = content_tag(tag_options.delete(:tag), @template.send( formatter, value), tag_options)
+      content = content_tag(tag_options.delete(:tag), @template.send( helper_formatter, value), tag_options)
     else
       content = tag.to_content_tag(tag_options.delete(:tag), tag_options)
     end
